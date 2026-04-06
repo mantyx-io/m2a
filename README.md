@@ -62,6 +62,12 @@ Installs the latest [GitHub release](https://github.com/mantyx-io/m2a/releases) 
 curl -fsSL https://raw.githubusercontent.com/mantyx-io/m2a/main/scripts/install.sh | bash
 ```
 
+If you prefer not to pipe the script on **stdin**, use this instead (no temp file; same effect as `bash scripts/install.sh` from a clone):
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/mantyx-io/m2a/main/scripts/install.sh)"
+```
+
 Pin a specific version:
 
 ```bash

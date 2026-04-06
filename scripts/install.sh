@@ -70,8 +70,12 @@ read_tag() {
 main() {
 	need_cmd curl
 	need_cmd tar
-	local goos goarch
-	read -r goos goarch <<<"$(map_uname)"
+	# Avoid `read` here: when this script is piped from curl, stdin is the script;
+	# use word-splitting from map_uname instead (see README for bash -c alternative).
+	local os_arch goos goarch
+	os_arch="$(map_uname)"
+	goos="${os_arch%% *}"
+	goarch="${os_arch##* }"
 	local tag
 	tag="$(read_tag)"
 	local base="m2a_${tag}_${goos}_${goarch}"
