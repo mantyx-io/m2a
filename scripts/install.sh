@@ -13,6 +13,9 @@ REPO="${REPO:-mantyx-io/m2a}"
 PREFIX="${PREFIX:-$HOME/.local/bin}"
 VERSION="${VERSION:-}"
 
+# Must be global so the EXIT trap can see it after main() returns (locals are gone then).
+INSTALL_TMPDIR=""
+
 die() {
 	echo "install.sh: $*" >&2
 	exit 1
@@ -68,15 +71,14 @@ main() {
 	tag="$(read_tag)"
 	local base="m2a_${tag}_${goos}_${goarch}"
 	local url="https://github.com/${REPO}/releases/download/${tag}/${base}.tar.gz"
-	local tmp
-	tmp="$(mktemp -d)"
-	trap 'rm -rf "$tmp"' EXIT
+	INSTALL_TMPDIR="$(mktemp -d)"
+	trap 'rm -rf "${INSTALL_TMPDIR:-}"' EXIT
 
 	echo "Downloading ${url}" >&2
-	curl -fsSL "$url" -o "${tmp}/bundle.tar.gz" || die "download failed (check tag exists and asset name matches install script)"
+	curl -fsSL "$url" -o "${INSTALL_TMPDIR}/bundle.tar.gz" || die "download failed (check tag exists and asset name matches install script)"
 
 	(
-		cd "$tmp"
+		cd "$INSTALL_TMPDIR"
 		tar -xzf bundle.tar.gz
 		[[ -f m2a ]] || die "archive did not contain binary m2a"
 		chmod +x m2a
