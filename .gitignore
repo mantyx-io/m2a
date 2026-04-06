@@ -1,0 +1,6 @@
+/m2a
+/dist/
+*.exe
+.DS_Store
+_ref/
+examples/gemini-agent/gemini-agent
