@@ -17,12 +17,20 @@ Built by [MANTYX](https://mantyx.io) using the official **[a2a-go](https://githu
 
 ---
 
+## Demo
+
+Animated preview of **m2a** in the terminal (chat input, transcript, and a markdown-formatted agent reply). Source: [`examples/demo.webp`](examples/demo.webp).
+
+<img src="examples/demo.webp" alt="Screen recording of the m2a TUI" width="682" style="max-width:100%;height:auto;" />
+
+---
+
 ## Table of contents
 
+- [Demo](#demo)
 - [Features](#features)
 - [Installation](#installation)
 - [Quick start](#quick-start)
-- [Demo](#demo)
 - [CLI reference](#cli-reference)
 - [Flags after the URL](#flags-after-the-url)
 - [Transports](#transports-protocol-bindings)
@@ -113,16 +121,6 @@ m2a version
 # or
 m2a -version
 ```
-
----
-
-## Demo
-
-Screen recording of **m2a** in the terminal (chat input, transcript, and a markdown-formatted agent reply). Source file: [`examples/demo.mp4`](examples/demo.mp4).
-
-<video src="examples/demo.mp4" controls playsinline width="100%" style="max-width:720px"></video>
-
-If the player doesn’t load in your browser, open [`examples/demo.mp4`](examples/demo.mp4) on GitHub or clone the repo and play it locally.
 
 ---
 
