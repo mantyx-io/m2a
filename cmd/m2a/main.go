@@ -15,6 +15,7 @@ import (
 	"github.com/a2aproject/a2a-go/v2/a2a"
 	"github.com/a2aproject/a2a-go/v2/a2aclient"
 	"github.com/a2aproject/a2a-go/v2/a2aclient/agentcard"
+	"github.com/a2aproject/a2a-go/v2/a2acompat/a2av0"
 	"github.com/mantyx-io/m2a/internal/httpclient"
 	"github.com/mantyx-io/m2a/internal/tui"
 )
@@ -78,9 +79,20 @@ func run() error {
 		return err
 	}
 
+	// Default transports speak A2A 1.0 wire format. Cards with protocolVersion 0.3.x need
+	// [a2av0] JSON-RPC (legacy result shapes); using the 1.0 client against 0.3 yields
+	// "unknown event type" when the server returns an unwrapped task/message.
 	factoryOpts := []a2aclient.FactoryOption{
 		a2aclient.WithJSONRPCTransport(hc),
 		a2aclient.WithRESTTransport(hc),
+		a2aclient.WithCompatTransport(a2av0.Version, a2a.TransportProtocolJSONRPC, a2av0.NewJSONRPCTransportFactory(a2av0.JSONRPCTransportConfig{Client: hc})),
+		a2aclient.WithCompatTransport(a2av0.Version, a2a.TransportProtocolHTTPJSON, a2aclient.TransportFactoryFn(func(ctx context.Context, card *a2a.AgentCard, iface *a2a.AgentInterface) (a2aclient.Transport, error) {
+			u, err := url.Parse(iface.URL)
+			if err != nil {
+				return nil, fmt.Errorf("failed to parse endpoint URL: %w", err)
+			}
+			return a2aclient.NewRESTTransport(u, hc), nil
+		})),
 	}
 	if pref, err := transportPreference(*transport); err != nil {
 		return err
