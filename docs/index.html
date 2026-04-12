@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>m2a — Talk to your agents from your terminal</title>
+    <meta name="description" content="Terminal client for the A2A protocol—agent card, HTTP+JSON or JSON-RPC, Bubble Tea UI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href="#">m<span>2</span>a</a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#how">How</a>
+          <a href="https://github.com/mantyx-io/m2a">GitHub</a>
+          <a href="https://a2a-protocol.org/latest/">A2A spec</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="callout" aria-labelledby="callout-heading">
+        <div class="wrap">
+          <div class="callout-grid">
+            <div class="callout-terminal">
+              <div class="terminal-window" role="img" aria-label="Mock terminal: m2a session">
+                <div class="terminal-titlebar">
+                  <div class="terminal-dots" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="terminal-title">m2a — zsh — 80×24</span>
+                </div>
+                <div class="terminal-body" id="terminal-output"></div>
+              </div>
+              <div class="terminal-replay">
+                <button type="button" id="terminal-replay">Replay</button>
+              </div>
+            </div>
+            <div class="callout-copy">
+              <h1 id="callout-heading">Talk to your agents from your terminal</h1>
+              <p class="callout-blurb">
+                <strong>m2a</strong> is a terminal client for the
+                <a href="https://a2a-protocol.org/latest/">Agent2Agent (A2A)</a> protocol. Point it at an agent URL: it loads the card, uses HTTP+JSON or JSON-RPC, and opens a keyboard-driven chat in the terminal. Custom headers, markdown replies, and debug traces when you need them.
+              </p>
+            </div>
+          </div>
+          <div class="callout-install">
+            <div class="install-block">
+              <pre class="install-snippet"><code><span class="sh-cmd">curl</span> <span class="sh-flag">-fsSL</span> <span class="sh-url">https://raw.githubusercontent.com/mantyx-io/m2a/main/scripts/install.sh</span> <span class="sh-op">|</span> <span class="sh-cmd">bash</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="steps" id="how">
+        <div class="wrap">
+          <h2>Three steps</h2>
+          <div class="step-grid">
+            <article class="step-card">
+              <div class="step-num">01</div>
+              <h3>Install</h3>
+              <p>Curl above, <code>go install github.com/mantyx-io/m2a/cmd/m2a@latest</code>, or releases.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">02</div>
+              <h3>Connect</h3>
+              <p>Base URL or <code>-card</code>. <code>-H</code> for headers, <code>-transport</code> to pin REST vs JSON-RPC.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">03</div>
+              <h3>Chat</h3>
+              <p><strong>Enter</strong> send · <strong>Esc</strong> / <strong>Ctrl+C</strong> quit · wheel scrolls.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="https://mantyx.io">MANTYX</a>
+          <a href="https://github.com/mantyx-io">github.com/mantyx-io</a>
+          <a href="https://github.com/mantyx-io/m2a">m2a</a>
+          <a href="https://github.com/mantyx-io/m2a/blob/main/README.md">README</a>
+          <a href="https://github.com/mantyx-io/m2a/blob/main/CONTRIBUTING.md">Contributing</a>
+          <a href="https://a2a-protocol.org/latest/">A2A spec</a>
+        </nav>
+        <p class="footer-license">MIT License</p>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

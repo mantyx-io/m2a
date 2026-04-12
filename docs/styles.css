@@ -1,0 +1,478 @@
+:root {
+  --bg: #060607;
+  --bg-elevated: #0e0e10;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #e8e8ec;
+  --muted: #8b8b98;
+  --accent: rgb(192 132 252);
+  --accent-hover: rgb(216 180 254);
+  --accent-dim: rgb(192 132 252 / 0.18);
+  --accent-glow: rgb(192 132 252 / 0.14);
+  --accent-border: rgb(192 132 252 / 0.42);
+  --accent-ink: #16081f;
+  --danger: #f87171;
+  --terminal-green: #86efac;
+  --terminal-dim: #6b7280;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --radius: 14px;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, var(--accent-glow), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgb(192 132 252 / 0.09), transparent 50%);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header */
+.site-header {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  background: rgba(6, 6, 7, 0.75);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--bg-elevated);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.btn:hover {
+  text-decoration: none;
+  border-color: var(--accent-border);
+  background: var(--accent-dim);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--accent-ink);
+}
+
+/* Callout: terminal + headline, then install */
+.callout {
+  padding: 3rem 0 2.5rem;
+}
+
+.callout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem 3rem;
+  align-items: center;
+}
+
+.callout-terminal {
+  min-width: 0;
+}
+
+.callout-terminal .terminal-window {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  margin: 0;
+  width: 100%;
+  height: 20rem;
+  overflow: hidden;
+}
+
+.callout-terminal .terminal-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.callout-terminal .terminal-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.callout-terminal .terminal-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.callout-terminal .terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.callout-copy {
+  min-width: 0;
+}
+
+.callout-copy h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.8vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.18;
+  text-align: left;
+}
+
+.callout-blurb {
+  margin: 1.15rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: var(--muted);
+  text-align: left;
+}
+
+.callout-install {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 840px) {
+  .callout-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .callout-copy {
+    order: 1;
+    text-align: center;
+  }
+
+  .callout-terminal {
+    order: 2;
+  }
+
+  .callout-copy h1 {
+    text-align: center;
+  }
+}
+
+/* Steps */
+.steps {
+  padding: 3rem 0 4rem;
+}
+
+.steps h2 {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+
+.step-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.step-card {
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.step-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.step-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* Install one-liner (under callout) */
+.install-block {
+  margin: 0 auto;
+  max-width: 42rem;
+  text-align: left;
+}
+
+.install-snippet {
+  margin: 0;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #0c0c0e;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+  overflow-x: hidden;
+}
+
+.install-snippet code {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.install-snippet .sh-cmd {
+  color: var(--accent-hover);
+  font-weight: 500;
+}
+
+.install-snippet .sh-flag {
+  color: rgb(125 211 252);
+}
+
+.install-snippet .sh-url {
+  color: var(--terminal-green);
+}
+
+.install-snippet .sh-op {
+  color: var(--terminal-dim);
+}
+
+.terminal-window {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #0c0c0e;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-dots span:nth-child(1) {
+  background: #ff5f57;
+}
+
+.terminal-dots span:nth-child(2) {
+  background: #febc2e;
+}
+
+.terminal-dots span:nth-child(3) {
+  background: #28c840;
+}
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  opacity: 0.85;
+}
+
+.terminal-body {
+  padding: 1.25rem 1.35rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.65;
+  min-height: 280px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.terminal-body .prompt {
+  color: var(--accent);
+}
+
+.terminal-body .cmd {
+  color: var(--text);
+}
+
+.terminal-body .dim {
+  color: var(--terminal-dim);
+}
+
+.terminal-body .ok {
+  color: var(--terminal-green);
+}
+
+.terminal-body .label {
+  color: #a5b4fc;
+}
+
+.terminal-body .user {
+  color: #93c5fd;
+}
+
+.terminal-body .agent {
+  color: var(--terminal-green);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.terminal-replay {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.terminal-replay button {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.terminal-replay button:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+.site-footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.footer-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.site-footer .footer-license {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--terminal-dim);
+}

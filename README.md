@@ -223,4 +223,5 @@ This project is released under the [MIT License](LICENSE).
 | **A2A specification** | [a2a-protocol.org](https://a2a-protocol.org/latest/) |
 | **Official Go SDK** | [a2aproject/a2a-go](https://github.com/a2aproject/a2a-go) |
 | **Repository** | [github.com/mantyx-io/m2a](https://github.com/mantyx-io/m2a) |
+| **Landing page** | [mantyx-io.github.io/m2a](https://mantyx-io.github.io/m2a/) (GitHub Pages) |
 | **Contributing** | [CONTRIBUTING.md](CONTRIBUTING.md) |
